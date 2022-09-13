@@ -22,6 +22,7 @@ app.get('/', (req,res)=>{
 
 ///app.use
 app.use(loggedMiddleware.isLogged)
+app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
 app.use('/users', users)
 
