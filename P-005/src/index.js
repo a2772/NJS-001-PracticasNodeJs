@@ -5,13 +5,19 @@ const app = express()
 const port =  3906
 const loggedMiddleware = require('./middlewares/logged')
 
-app.listen(port, ()=>{
-    console.log('App running on port: ' + port)
+//app.set (settings)
+app.set('title', 'App made with Node.js')
+app.set('port', port)
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+
+app.listen(app.get('port'), ()=>{
+    console.log(app.get('title') + '. Running on port: ' + app.get('port'))
 })
 
 ///Routes
 app.get('/', (req,res)=>{
-    res.send('Welcome')
+    res.render('index')
 })
 
 ///app.use
