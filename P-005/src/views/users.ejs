@@ -9,5 +9,19 @@
 </head>
 <body>
     <h1 class="title-002">All users here</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Age</td>
+        </tr>
+        <% users.forEach((user)=>{ %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.age %></td>
+            </tr>
+        <% }) %>
+    </table>
 </body>
 </html>
