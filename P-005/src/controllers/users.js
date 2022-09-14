@@ -1,44 +1,78 @@
-const users = [
-    {id: 1, name: 'Nepomuceno', age: 27},
-    {id: 2, name: 'John', age: 19},
-    {id: 3, name: 'Aitana', age: 30},
-    {id: 4, name: 'Zoilo', age: 30}
-]
+const connection = require('../model/db/connection')
 
 const getUsers = (req,res)=>{
-    res.render('users', {users: users})
+    const sql = 'SELECT * FROM users;'
+    connection.query(sql, (err,result)=>{
+        if(err){
+            console.log('Ha ocurrido un error select')
+        }else{
+            console.log(result)
+            res.render('users', {users: result})
+        }
+    })
 }
 const getCreateUser = (req,res)=>{
-    res.render('create-user', {users: users})
+    res.render('create-user')
 }
 const getUpdateUser = (req,res)=>{
-    res.render('update-user', {users: users})
+    const param = req.params.id
+    const qry = 'SELECT * FROM users WHERE id=?'
+    connection.query(qry,param,(err,result)=>{
+        if(err){
+            console.log('Ha ocurrido un error: ' + err)
+        }else{
+            console.log(result)
+            res.render('update-user',{user:result})
+        }
+    })
 }
 const getDeleteUser = (req,res)=>{
-    res.render('delete-user', {users: users})
+    const param = req.params.id
+    const qry = 'SELECT * FROM users WHERE id=?'
+    connection.query(qry,param,(err,result)=>{
+        if(err){
+            console.log('Ha ocurrido un error: ' + err)
+        }else{
+            console.log(result)
+            res.render('delete-user',{user:result})
+        }
+    })
 }
 const createUser = (req,res)=>{
-    users.push(req.body)
-    res.render('users', {users: users})
+    const qry = 'INSERT INTO users SET ? '
+    const data = req.body
+    connection.query(qry,data,(err,result)=>{
+        if(err){
+            console.log('Ha ocurido un error')
+        }else{
+            console.log('Usuario registrado')
+            res.redirect('/users/all')
+        }
+    })
 }
 const updateUser = (req,res)=>{
-    for(let usrNum = 0; usrNum < users.length; usrNum++){
-        if(req.params.id == users[usrNum].id){
-            users[usrNum].name = req.body.name
-            users[usrNum].age = req.body.age
-            break
+    const param = req.params.id
+    const qry = `UPDATE users SET name='${req.body.name}', age='${req.body.age}' WHERE id=${param}`
+    connection.query(qry,(err,result)=>{
+        if(err){
+            console.log('Ha ocurrido un error')
+        }else{
+            console.log('Usuario actualizado')
+            res.redirect('/users/all')
         }
-    }
-    res.render('users', {users: users})
+    })
 }
 const deleteUser = (req,res)=>{
-    for(let usrNum = 0; usrNum < users.length; usrNum++){
-        if(req.params.id == users[usrNum].id){
-            users.splice(usrNum,1)
-            break
+    const param = req.params.id
+    const qry = `DELETE FROM users WHERE id=${param}`
+    connection.query(qry,(err,result)=>{
+        if(err){
+            console.log('Ha ocurrido un error')
+        }else{
+            console.log('Usuario Eliminado')
+            res.redirect('/users/all')
         }
-    }
-    res.render('users', {users: users})
+    })
 }
 
 module.exports = {getUsers, getCreateUser, getUpdateUser, getDeleteUser,

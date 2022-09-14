@@ -9,5 +9,22 @@
 </head>
 <body>
     <h1 class="title-002">Delete user here</h1>
+    <form class="form-001" action="/users/delete/<%= user[0]['id'] %>" method="POST">
+        <div clas="flex-container">
+            <div>
+                <label for="">Name: </label>
+                <input type="text" name="name" id="name" value="<%= user[0]['name'] %>" readonly>
+            </div>
+            <div>
+                <label for="">Age: </label>
+                <input type="text" name="age" id="age" value="<%= user[0]['age'] %>" readonly>
+            </div>
+            <div>
+                <p class="text-001">¿Desea eliminar a este usuario? NO PODR&Aacute;S RECUPERARLO</p>
+                <a href="/users/all" class="btn-submit-002 text-001">No, deseo conservarlo</a>
+                <input type="submit" value="Sí, deseo eliminarlo" class="btn-submit-001">
+            </div>
+        </div>
+    </form>
 </body>
 </html>

@@ -4,10 +4,10 @@ const usersControllers = require('../controllers/users')
 
 router.get('/all', usersControllers.getUsers)
 router.get('/create', usersControllers.getCreateUser)
-router.get('/update', usersControllers.getUpdateUser)
-router.get('/delete', usersControllers.getDeleteUser)
+router.get('/update/:id', usersControllers.getUpdateUser)
+router.get('/delete/:id', usersControllers.getDeleteUser)
 router.post('/create', usersControllers.createUser)
-router.put('/update/:id', usersControllers.updateUser)
-router.delete('/delete/:id', usersControllers.deleteUser)
+router.post('/update/:id', usersControllers.updateUser)
+router.post('/delete/:id', usersControllers.deleteUser)
 
 module.exports = router

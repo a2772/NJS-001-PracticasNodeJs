@@ -1,4 +1,5 @@
 const express = require('express')
+const connection = require('./model/db/connection')
 const path = require('path')
 const users = require('./routes/users')
 const app = express()

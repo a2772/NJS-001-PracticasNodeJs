@@ -1,3 +1,4 @@
+var requests = 0
 const port = 3906
 const http = require('http')
 const server = http.createServer(onRequest)
@@ -10,8 +11,8 @@ server.listen(port, ()=>{
 
 function onRequest(req,res){
     //Mostramos mensaje de que se ha recibido una petición
-    console.log('Request received')
-
+    console.log(requests + ' Request received')
+    requests++
     //Según el tipo de url en la que se encuentre, ejecutamos una acción en específico
     if(req.url == '/'){
         //Manejo de los errores para el archivo index.html

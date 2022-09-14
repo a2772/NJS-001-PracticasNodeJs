@@ -9,17 +9,21 @@
 </head>
 <body>
     <h1 class="title-002">All users here</h1>
-    <table>
+    <table class="table-001">
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Age</td>
+            <td class="header-001">ID</td>
+            <td class="header-001">Name</td>
+            <td class="header-001">Age</td>
+            <td class="header-001">Modify</td>
+            <td class="header-001">Delete</td>
         </tr>
         <% users.forEach((user)=>{ %>
             <tr>
                 <td><%= user.id %></td>
                 <td><%= user.name %></td>
                 <td><%= user.age %></td>
+                <td class="btn"><a class="btn-update" id="btn-update" href="/users/update/<%= user.id %>">Modify this user</a></td>
+                <td class="btn"><a class="btn-delete" id="btn-delete" href="/users/delete/<%= user.id %>">Delete this user</a></td>
             </tr>
         <% }) %>
     </table>
