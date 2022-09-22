@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Sockets</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1 class="title-001">Using web sockets</h1>
+    <div id="chat" class="flex-container">
+        <div class="div-cont-001">
+            <input class="title-002" type="text" id="username" placeholder="Ingrese su nombre de usuario">
+        </div>
+        <div id="user_joined"></div>
+        <div id="writing"></div>
+        <div id="all-messages"></div>
+        <div class="div-cont-001">
+            <textarea class="text-001" id="write_message" placeholder="Ingrese su mensaje"></textarea>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
